@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  constraints(lambda { |req| req.format == :json }) do
+    resources :tasks, only: :index
+    resources :users, only: %i[index create]
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  end
+  root "home#index"
+  get '*path', to: 'home#index', via: :all
 end
