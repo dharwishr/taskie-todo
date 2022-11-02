@@ -10,6 +10,8 @@ gem "bcrypt"
 
 gem "strftime"
 
+gem "uglifier"
+
 gem "pundit"
 
 # For compiling and bundling JavaScript. Read more: https://github.com/rails/webpacker
