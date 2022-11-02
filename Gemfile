@@ -8,6 +8,10 @@ gem "rails", "~> 7.0.3", ">= 7.0.3.1"
 
 gem "bcrypt"
 
+gem "strftime"
+
+gem "pundit"
+
 # For compiling and bundling JavaScript. Read more: https://github.com/rails/webpacker
 gem "webpacker"
 
