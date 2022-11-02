@@ -23,7 +23,6 @@ node_modules
 
 # Rails specific ignores
 /storage
-/vendor
 test/reports
 test/fixtures
 /public/packs
