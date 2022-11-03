@@ -10,7 +10,10 @@ const TableContainer = ({
     destroyTask,
     setEditTask
 }) => {
-
+    const locale = {
+        emptyText: 'No Tasks!',
+      };
+      
     const columns = [
         {
             title: 'Title',
@@ -73,6 +76,7 @@ const TableContainer = ({
                     {category}</h2>
             </header>
             <AntTable columns={columns}
+                locale={locale}  
                 dataSource={data}
                 pagination={false}
                 rowKey={record => record.id}/>

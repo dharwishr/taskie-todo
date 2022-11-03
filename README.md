@@ -25,7 +25,7 @@ Default Login :
 * Session Controller
     * `create` -> Create a new session for logged in user.
 
-        input: `:email`, `:passoword`
+        input: `:email`, `:password`
 
 ### Test covarage : 91.28% 
 

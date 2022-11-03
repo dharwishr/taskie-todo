@@ -40,7 +40,7 @@ const Dashboard = () => {
     }, []);
 
     return (
-        <div className="antialiased bg-gray-100 h-screen">
+        <div className="antialiased bg-gray-100 min-h-screen pb-10">
             <NavBar/>
             <div class="w-full max-w-3xl mx-auto mt-5 flex flex-col">
                 <Button type="primary" className="w-1/4 float-right self-end"
