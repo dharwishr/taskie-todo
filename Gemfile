@@ -6,6 +6,8 @@ ruby "3.1.2"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.3", ">= 7.0.3.1"
 
+gem 'simplecov', require: false, group: :test
+
 gem "bcrypt"
 
 gem "strftime"
@@ -55,6 +57,11 @@ gem "bootsnap", require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+   # Rails integration for factory_bot, a replacement for fixtures
+  gem 'factory_bot_rails'
+
+  # For auto-generating demo data
+  gem 'faker'
 end
 
 group :development do
@@ -66,6 +73,8 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+  
+
 end
 
 group :test do

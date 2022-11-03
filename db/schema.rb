@@ -33,5 +33,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_31_112203) do
     t.string "authentication_token"
   end
 
-  add_foreign_key "tasks", "users"
+  add_foreign_key "tasks", "users", on_delete: :cascade
 end
