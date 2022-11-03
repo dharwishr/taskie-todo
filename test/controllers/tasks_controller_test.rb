@@ -64,7 +64,7 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
     assert @task.completed?
   end
 
-  def test_not_found_error_rendered_for_invalid_task_slug
+  def test_not_found_error_rendered_for_invalid_task_id
     invalid_id = "invalid-id"
 
     get task_path(invalid_id), headers: @user_headers

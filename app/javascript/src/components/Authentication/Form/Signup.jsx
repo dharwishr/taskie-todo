@@ -7,14 +7,14 @@ import {Button, Checkbox, Form, Input} from 'antd';
 const Signup = ({handleSubmit}) => {
 
     return (
-        <div className="bg-gray-50 flex min-h-screen items-cente justify-center px-4 py-12 sm:px-6 lg:px-8">
+        <div className="bg-gray-50 flex min-h-screen items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
             <div className="w-full max-w-md">
                 <div className="flex flex-col aligns-center">
                     <h2 className="mt-6 text-center text-3xl font-extrabold leading-9 text-bb-gray-700">
                         Sign Up
                     </h2>
                     <div className="text-center">
-                        <Link to="/signup" className="transition focus:outline-none mt-2 text-sm font-medium text-bb-purple duration-150 ease-in-out focus:underline">
+                        <Link to="/login" className="transition focus:outline-none mt-2 text-sm font-medium text-bb-purple duration-150 ease-in-out focus:underline">
                             Or Login
                         </Link>
                     </div>
