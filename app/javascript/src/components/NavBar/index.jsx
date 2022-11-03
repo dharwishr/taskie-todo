@@ -29,11 +29,21 @@ const NavBar = () => {
         <div className="flex h-16 justify-between">
           <div className="flex px-2 lg:px-0">
             <div className="hidden lg:flex">
-              <span>Dashboard</span>
+            <Link to="/"
+              className="transition focus:outline-none inline-flex cursor-pointer items-center
+              border-b-2 border-transparent px-1 pt-1
+              text-sm font-semibold leading-5 text-bb-gray-600
+              text-opacity-50 duration-150 ease-in-out
+              hover:text-bb-gray-600 focus:text-bb-gray-700"
+            >
+              Dashboard
+            </Link>
             </div>
           </div>
           <div className="flex items-center justify-center gap-x-4">
-            <span className="text-blue-600 inline-block text-2xl sm:text-3xl font-extrabold tracking-tight">Taskie</span>
+            <span className="text-blue-600 inline-block text-2xl sm:text-3xl font-extrabold tracking-tight">
+            <Link to="/">Taskie</Link>
+            </span>
           </div>
           <div className="flex items-center justify-end gap-x-4">
             <span

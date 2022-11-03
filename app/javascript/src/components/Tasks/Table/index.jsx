@@ -10,7 +10,8 @@ const Table = ({allTasks, overdueTasks, completedTasks, fetchTasks, setIsEditMod
                 id: record.id,
                 payload: {
                     completed: !record.completed
-                }
+                },
+                quiet: true,
             });
             fetchTasks()
         } catch (error) {
@@ -39,11 +40,11 @@ const Table = ({allTasks, overdueTasks, completedTasks, fetchTasks, setIsEditMod
       };
     return (
         <>
-            <TableContainer {...tableProps} category={"All"} 
+            <TableContainer {...tableProps} category={"All"} key="All" 
                 data={allTasks}/>
-            <TableContainer {...tableProps} category={"Overdue"} 
+            <TableContainer {...tableProps} category={"Overdue"} key="Overdue" 
                 data={overdueTasks}/>
-            <TableContainer {...tableProps} category={"Completed"}
+            <TableContainer {...tableProps} category={"Completed"} key="Completed" 
                 data={completedTasks}/>
         </>
     )

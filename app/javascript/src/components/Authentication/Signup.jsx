@@ -1,24 +1,17 @@
 import React, { useState } from "react";
+import { useHistory } from 'react-router-dom';
 
 import authApi from "apis/auth";
+
 import SignupForm from "components/Authentication/Form/Signup";
 
-const Signup = ({ history }) => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordConfirmation, setPasswordConfirmation] = useState("");
+const Signup = () => {
+  const history = useHistory()
 
   const handleSubmit = async event => {
-    event.preventDefault();
     try {
-      await authApi.signup({
-        name,
-        email,
-        password,
-        password_confirmation: passwordConfirmation,
-      });
-      history.push("/");
+      await authApi.signup({...event});
+      history.push('/')
     } catch (error) {
       logger.error(error);
     }
@@ -27,10 +20,6 @@ const Signup = ({ history }) => {
   return (
     <SignupForm
       handleSubmit={handleSubmit}
-      setEmail={setEmail}
-      setName={setName}
-      setPassword={setPassword}
-      setPasswordConfirmation={setPasswordConfirmation}
     />
   );
 };
