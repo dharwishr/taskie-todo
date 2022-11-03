@@ -2,15 +2,13 @@ import React, {useState, useEffect} from "react";
 
 import {Button} from 'antd';
 
-import {all, isNil, isEmpty, either} from "ramda";
-
 import tasksApi from "apis/tasks";
 import NavBar from "components/NavBar";
 import Table from "components/Tasks/Table";
 import Edit from "components/Tasks/Edit"
 import Create from "components/Tasks/Create"
 
-const Dashboard = ({history}) => {
+const Dashboard = () => {
     const [allTasks, setAllTasks] = useState([]);
     const [completedTasks, setCompletedTasks] = useState([]);
     const [overdueTasks, setOverdueTasks] = useState([]);
@@ -39,7 +37,7 @@ const Dashboard = ({history}) => {
 
     useEffect(() => {
         fetchTasks();
-    }, [isCreateModalOpen, isEditModalOpen]);
+    }, []);
 
     return (
         <div className="antialiased bg-gray-100 h-screen">
@@ -56,8 +54,8 @@ const Dashboard = ({history}) => {
                     completedTasks={completedTasks}
                     setId={setId}/>
             </div>
-            <Create isCreateModalOpen={isCreateModalOpen} setIsCreateModalOpen={setIsCreateModalOpen}/>
-            <Edit isEditModalOpen={isEditModalOpen} setIsEditModalOpen={setIsEditModalOpen} id={id}/>
+            <Create fetchTasks={fetchTasks} isCreateModalOpen={isCreateModalOpen} setIsCreateModalOpen={setIsCreateModalOpen}/>
+            <Edit fetchTasks={fetchTasks} isEditModalOpen={isEditModalOpen} setIsEditModalOpen={setIsEditModalOpen} id={id}/>
         </div>
 
     );

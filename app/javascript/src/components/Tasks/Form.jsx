@@ -1,23 +1,25 @@
 import React from "react";
-import DatePicker from "react-datepicker";
-import {Input, Button, Checkbox} from 'antd';
+import moment from 'moment';
+
+import {Input, Checkbox, DatePicker} from 'antd';
 import {Form as AntForm} from 'antd';
 
 const Form = ({
     type,
     title,
     duedate,
-    setDuedate,
     completed,
     handleSubmit
 }) => {
     const [form] = AntForm.useForm();
 
+    const dateFormat = 'DD-MM-YYYY';
+
     const submitHandler = async event => {
         await handleSubmit(event);
         form.resetFields();
     }
-    form.setFieldsValue({title, duedate, completed});
+    form.setFieldsValue({title, duedate: moment(duedate), completed});
     return (
 
         <AntForm name="basic"
@@ -33,7 +35,7 @@ const Form = ({
                 {
                     title: title,
                     completed: completed,
-                    duedate: duedate
+                    duedate: moment(duedate)
                 }
             }
             onFinish={submitHandler}
@@ -48,12 +50,7 @@ const Form = ({
                 <Input/>
             </AntForm.Item>
             <AntForm.Item label="Duedate" name="duedate">
-                <DatePicker selected={duedate}
-                    dateFormat="dd/M/yyyy"
-
-                    onChange={
-                        (date) => setDuedate(date)
-                    }/>
+                <DatePicker />
             </AntForm.Item>
             <AntForm.Item label="Completed" name="completed" valuePropName="checked">
                 <Checkbox key="completed"></Checkbox>

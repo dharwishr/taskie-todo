@@ -6,16 +6,13 @@ import LoginForm from "components/Authentication/Form/Login";
 import { setToLocalStorage } from "utils/storage";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
   const handleSubmit = async event => {
-    event.preventDefault();
     try {
-      const response = await authApi.login({ email, password });
+      const response = await authApi.login({...event});
       setToLocalStorage({
         authToken: response.data.authentication_token,
-        email,
+        email: event.email,
         userId: response.data.id,
         userName: response.data.name,
       });
@@ -29,8 +26,6 @@ const Login = () => {
   return (
     <LoginForm
       handleSubmit={handleSubmit}
-      setEmail={setEmail}
-      setPassword={setPassword}
     />
   );
 };

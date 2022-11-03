@@ -1,17 +1,17 @@
 import React, {useState, useEffect} from "react";
 
 import {Button, Modal} from 'antd';
-import {useHistory} from "react-router-dom";
 
 import tasksApi from "apis/tasks";
 
 import Form from "./Form";
 
-const Edit = ({isEditModalOpen, setIsEditModalOpen, id}) => {
+const Edit = ({isEditModalOpen, setIsEditModalOpen, id, fetchTasks}) => {
     const [title, setTitle] = useState("");
     const [duedate, setDuedate] = useState(new Date());
     const [completed, setCompleted] = useState(false);
-    const [loading, setLoading] = useState(false);
+
+    const dayjs = require('dayjs');
 
     const fetchTask = async () => {
       try {
@@ -20,27 +20,31 @@ const Edit = ({isEditModalOpen, setIsEditModalOpen, id}) => {
             {title, duedate, completed}},
         } = await tasksApi.show(id);
         setTitle(title);
-        setDuedate(Date.parse(date));
+        setDuedate(new Date(duedate));
         setCompleted(completed);
       } catch (error) {
         logger.error(error);
       }
     }
+
     const handleSubmit = async event => {
       try {
-        console.log((event))
         await tasksApi.update({
           id, payload: {...event}
         });
         setIsEditModalOpen(false)
+        fetchTasks()
       } catch (error) {
-        setLoading(false);
         logger.error(error);
       }
     };
+
+    
+
     useEffect(() => {
-      fetchTask();
-    }, [id]);
+      isEditModalOpen ? fetchTask() : null
+    }, [isEditModalOpen]);
+
     return (
         <Modal open={isEditModalOpen}
             onCancel={
@@ -58,10 +62,8 @@ const Edit = ({isEditModalOpen, setIsEditModalOpen, id}) => {
         }>
             <p>Edit Task</p>
             <Form handleSubmit={handleSubmit}
-                loading={loading}
                 title={title}
                 completed={completed}
-                setDuedate={setDuedate}
                 duedate={duedate}
                 type="edit"/>
         </Modal>

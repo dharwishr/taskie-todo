@@ -1,23 +1,21 @@
 import React, {useState, useEffect} from "react";
 
 import {Button, Modal} from 'antd';
-import {useHistory} from "react-router-dom";
 
 import tasksApi from "apis/tasks";
 
 import Form from "./Form";
 
-const Create = ({isCreateModalOpen, setIsCreateModalOpen}) => {
-
+const Create = ({isCreateModalOpen, setIsCreateModalOpen, fetchTasks}) => {
     const [title, setTitle] = useState("");
     const [duedate, setDuedate] = useState(new Date());
     const [completed, setCompleted] = useState(false);
-    const [loading, setLoading] = useState(false);
-
+    
     const handleSubmit = async event => {
         try {
             await tasksApi.create({...event});
             setIsCreateModalOpen(false);
+            fetchTasks()
         } catch (error) {
             logger.error(error);
         }
@@ -39,7 +37,6 @@ const Create = ({isCreateModalOpen, setIsCreateModalOpen}) => {
         }>
             <p>Add Task</p>
             <Form handleSubmit={handleSubmit}
-                loading={loading}
                 setTitle={setTitle}
                 title={title}
                 setCompleted={setCompleted}
